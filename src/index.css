@@ -34,11 +34,25 @@ code {
   align-items: center;
 }
 
+.suggestions-card{
+  width: 14rem;
+  font-family: monospace;
+  background: #F7931A;
+  color: white;
+  right: 10px;
+  top: 9rem;
+  position: absolute;
+  align-items: left;
+}
+
 @media (max-width: 800px) {
   .btc-card {
     display: none;
   }
   .converter-card {
+    display: none;
+  }
+  .suggestions-card{
     display: none;
   }
 }
