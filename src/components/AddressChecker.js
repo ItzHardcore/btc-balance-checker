@@ -132,7 +132,7 @@ const AddressChecker = () => {
           </Stack>
         </Col>
       </Row>
-      <Row className="justify-content-center mt-2 ">
+      <Row className="justify-content-center mt-2">
         {balances.map(
           (balance) =>
             !errors[balance.address] && (

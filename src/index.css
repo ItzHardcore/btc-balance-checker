@@ -13,24 +13,24 @@ code {
 }
 
 .btc-card{
-  width: 10rem;
+  width: 12rem;
   font-family: monospace;
   background: #F7931A;
   color: white;
   left: 10px;
   top: 11rem;
-  position: fixed;
+  position: absolute;
   align-items: left;
 }
 
 .converter-card{
-  width: 10rem;
+  width: 12rem;
   font-family: monospace;
   background: #F7931A;
   color: white;
   left: 10px;
   top: 18rem;
-  position: fixed;
+  position: absolute;
   align-items: center;
 }
 
