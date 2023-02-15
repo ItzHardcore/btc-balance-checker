@@ -8,7 +8,6 @@ import AddressChecker from "./components/AddressChecker";
 import Info from "./components/Info";
 import Container from "react-bootstrap/Container";
 import Header from "./components/Header";
-import Favorites from "./components/Favorites";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -19,7 +18,6 @@ root.render(
       <Info />
       <PriceChecker />
       <AddressChecker />
-      <Favorites />
     </Container>
     <Footer />
   </>

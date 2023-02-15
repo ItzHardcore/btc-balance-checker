@@ -67,12 +67,10 @@ const AddressChecker = () => {
   };
 
   const convertToEuro = (balance) => {
-    console.log(rates);
     return balance * rates.EUR.last;
   };
 
   const convertToDollar = (balance) => {
-    console.log(rates);
     return balance * rates.USD.last;
   };
 
@@ -100,7 +98,7 @@ const AddressChecker = () => {
         <Col xs={6} sm={6}>
           <h4>Bitcoin Addresses: </h4>
           {addresses.map((address, index) => (
-            <Form.Group className="mb-3 " controlId={index}>
+            <Form.Group className="mb-3 " key={index}>
               <div style={{ display: "flex" }}>
                 <Form.Control
                   type="text"

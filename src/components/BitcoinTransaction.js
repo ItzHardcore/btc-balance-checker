@@ -7,18 +7,17 @@ const BitcoinTransaction = ({ address }) => {
   const [usd, setUsd] = useState(0);
 
   const fetchData = useCallback(() => {
-    fetch("https://api.blockchain.com/v3/exchange/tickers/BTC-EUR")
+    fetch("https://api.blockchain.com/v3/exchange/tickers/")
       .then((res) => res.json())
       .then((data) => {
-        setEur(data.last_trade_price);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    fetch("https://api.blockchain.com/v3/exchange/tickers/BTC-USD")
-      .then((res) => res.json())
-      .then((data) => {
-        setUsd(data.last_trade_price);
+        const btcEurPrice = data.find((obj) => obj.symbol === "BTC-EUR");
+        const btcUsdPrice = data.find((obj) => obj.symbol === "BTC-USD");
+        if (btcEurPrice) {
+          setEur(btcEurPrice.last_trade_price);
+        }
+        if (btcUsdPrice) {
+          setUsd(btcUsdPrice.last_trade_price);
+        }
       })
       .catch((error) => {
         console.log(error);
