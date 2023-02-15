@@ -28,7 +28,7 @@ const Info = () => {
             Blockstream
           </a>{" "}
           API, it provides real-time updates and accurate results. I believe in
-          the importance of trust and transparency. <b>Don't Trust, Verify</b>
+          the importance of trust and transparency. <b>Don't Trust, Verify!</b>
         </p>
         <p>
           We do not require access to your private keys, which means that you
