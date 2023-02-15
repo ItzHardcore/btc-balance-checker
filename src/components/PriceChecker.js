@@ -57,7 +57,6 @@ const PriceChecker = () => {
     fetch("https://api.blockchain.com/v3/exchange/tickers/")
       .then((res) => res.json())
       .then((data) => {
-        console.log("FUI BUSCAR");
         // Find the objects with the matching symbols
         const btcEurPrice = data.find((obj) => obj.symbol === "BTC-EUR");
         const btcUsdPrice = data.find((obj) => obj.symbol === "BTC-USD");

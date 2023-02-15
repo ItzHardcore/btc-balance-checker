@@ -11,13 +11,21 @@ const Info = () => {
           and easily convert Bitcoin to Euro or Dollar.
         </p>
         <p>
-          Powered by the reliable{" "}
+          Powered by the reliables{" "}
           <a
             href="https://www.blockchain.com/explorer/api"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Blockchain.com
+            Blockchain
+          </a>{" "}
+          API &{" "}
+          <a
+            href="https://blockstream.com/satellite-api-documentation/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Blockstream
           </a>{" "}
           API, it provides real-time updates and accurate results. I believe in
           the importance of trust and transparency. <b>Don't Trust, Verify</b>
