@@ -3,8 +3,8 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 
 const PriceChecker = () => {
-  const [eurRate, setEurRate] = useState(0);
-  const [usdRate, setUsdRate] = useState(0);
+  const [eurRate, setEurRate] = useState(0.0);
+  const [usdRate, setUsdRate] = useState(0.0);
   const [loading, setLoading] = useState(true);
 
   //Converter
