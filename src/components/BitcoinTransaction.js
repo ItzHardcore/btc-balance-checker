@@ -1,5 +1,6 @@
 import React, { useCallback, useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
+import axios from "axios";
 
 const BitcoinTransaction = ({ address }) => {
   const [transactions, setTransactions] = useState([]);
@@ -27,13 +28,42 @@ const BitcoinTransaction = ({ address }) => {
   fetchData();
   useEffect(() => {
     const fetchTransactions = async () => {
-      const res = await fetch(
-        `https://blockchain.info/rawaddr/${address}?cors=true`
-      );
-      const data = await res.json();
-      setTransactions(data.txs);
-    };
+      const url = `https://blockstream.info/api/address/${address}/txs`;
+      const response = await axios.get(url);
+      const transactions = response.data;
+      const transactionHistory = [];
 
+      let balance = 0;
+
+      for (const transaction of transactions) {
+        const date = new Date(
+          transaction.status.block_time * 1000
+        ).toLocaleDateString();
+        const outputs = transaction.vout;
+
+        for (const output of outputs) {
+          if (output.scriptpubkey_address === address) {
+            balance += output.value;
+          }
+        }
+
+        const inputs = transaction.vin;
+        for (const input of inputs) {
+          if (input.prevout.scriptpubkey_address === address) {
+            balance -= input.prevout.value;
+          }
+        }
+
+        const tx = {
+          date: date,
+          balance: balance / 100000000,
+          confirmations: transaction.status.confirmed,
+          txid: transaction.txid,
+        };
+        transactionHistory.push(tx);
+      }
+      setTransactions(transactionHistory);
+    };
     fetchTransactions();
   }, [address]);
 
@@ -51,16 +81,16 @@ const BitcoinTransaction = ({ address }) => {
         <tbody>
           {transactions.map((transaction) => (
             <tr key={transaction.txid}>
-              <td>{new Date(transaction.time * 1000).toLocaleDateString()}</td>
+              <td>{transaction.date}</td>
 
-              <td style={{ color: transaction.result < 0 ? "red" : "green" }}>
-                {transaction.result / 100000000}
+              <td style={{ color: transaction.balance < 0 ? "red" : "green" }}>
+                {transaction.balance}
               </td>
-              <td style={{ color: transaction.result < 0 ? "red" : "green" }}>
-                {((transaction.result / 100000000) * eur).toFixed(2)} €
+              <td style={{ color: transaction.balance < 0 ? "red" : "green" }}>
+                {(transaction.balance * eur).toFixed(2)} €
               </td>
-              <td style={{ color: transaction.result < 0 ? "red" : "green" }}>
-                {((transaction.result / 100000000) * usd).toFixed(2)} $
+              <td style={{ color: transaction.balance < 0 ? "red" : "green" }}>
+                {(transaction.balance * usd).toFixed(2)} $
               </td>
             </tr>
           ))}
